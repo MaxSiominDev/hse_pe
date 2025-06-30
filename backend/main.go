@@ -14,4 +14,5 @@ func HelloWorldHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	router := mux.NewRouter()
 	router.HandleFunc("/hello", HelloWorldHandler)
+	http.ListenAndServe(":8080", router)
 }
