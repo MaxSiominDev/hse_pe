@@ -1,13 +1,12 @@
 package main
 
 import (
-	"context"
+	"database/sql"
 	"log"
 	"net/http"
-	"os"
 
 	"github.com/go-chi/chi"
-	"github.com/jackc/pgx/v4/pgxpool"
+	_ "github.com/mattn/go-sqlite3"
 
 	"hse_school/internal/handlers"
 	"hse_school/internal/repositories"
@@ -16,7 +15,7 @@ import (
 
 func main() {
 	// Подключение к базе данных
-	db, err := pgxpool.Connect(context.Background(), os.Getenv("DATABASE_URL"))
+	db, err := sql.Open("sqlite3", "summaries.db")
 	if err != nil {
 		log.Fatal(err)
 	}
