@@ -16,12 +16,12 @@ export default function App() {
     
       <div align="center" class="App-header">
     <form onSubmit={handleSubmit(onSubmit)}>
-      <h2 align="center">Каталог товаров</h2>
-      <input {...register("conspect", { required: true })} placeholder="Напиши конспект"/>
-  
-      <input type="submit" />
+      <h2 align="center" class="text">Конспекты по темам и уровню изучения</h2>
+      <input {...register("conspect", { required: true })} placeholder="Предмет, тема, уровень погружения"/>
+      <button type="submit">Отправить</button>
     </form>
       </div>
+    
   )
   
-} 
+}
