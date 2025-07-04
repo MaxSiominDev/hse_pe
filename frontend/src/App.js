@@ -9,7 +9,12 @@ export default function App() {
   } = useForm()
 
   const onSubmit = (data) => {
+      // Could be GET or POST/PUT/PATCH/DELETE
+    fetch('http://localhost:8080')
+      .then(res => res.text())
+      .then(alert);
 
+/* { status: 'ok', method: 'GET' } */
   }
 
   return (
