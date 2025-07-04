@@ -14,24 +14,21 @@ import (
 )
 
 func main() {
-	// Подключение к базе данных
-	db, err := sql.Open("sqlite3", "summaries.db")
+	db, err := sql.Open("sqlite3", "notes.db")
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer db.Close()
 
-	// Создание репозитория, сервиса и обработчиков
-	repo := repositories.NewUserRepository(db)
-	service := services.NewDefaultUserService(repo)
-	handler := handlers.NewUserHandler(service)
+	repo := repositories.NewNotesRepository(db)
+	service := services.NewDefaultNotesService(repo)
+	notesHandler := handlers.NewNotesHandler(service)
 
-	// Настройка маршрутизатора
 	r := chi.NewRouter()
-	r.Get("/users/{id}", handler.GetUserByID)
-	r.Post("/users", handler.CreateUser)
+	r.Post("/api/new-note", notesHandler.CreateNote)
+	r.Get("/api/notes/{id}", notesHandler.GetNoteByID)
+	r.Get("/ping", notesHandler.Ping)
 
-	// Запуск HTTP сервера
 	log.Println("Starting server on :8080")
 	log.Fatal(http.ListenAndServe(":8080", r))
 }
