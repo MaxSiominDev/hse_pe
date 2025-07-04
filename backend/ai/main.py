@@ -4,9 +4,16 @@ import subprocess
 import httpx
 from pydantic import BaseModel
 import uvicorn
+import threading
+import time
 
 ai_model_name = "yandexgpt-lite"
 ai_temperature = 0.3
+
+_sdk_instance = None
+_sdk_lock = threading.Lock()
+_sdk_timestamp = 0
+_CREDENTIALS_EXPIRY = 1 * 60 * 60 # One hour
 
 def retrieve_folder_id() -> str | None:
     try:
@@ -26,7 +33,6 @@ def retrieve_folder_id() -> str | None:
         return None
 
 def retrieve_token() -> str | None:
-    return token
     try:
         result = subprocess.run(
             ["yc", "iam", "create-token"],
@@ -37,6 +43,31 @@ def retrieve_token() -> str | None:
         return result.stdout.strip()
     except (subprocess.CalledProcessError, FileNotFoundError):
         return None
+    
+def get_sdk():
+    global _sdk_instance, _sdk_timestamp
+    current_time = time.time()
+    
+    if _sdk_instance and (current_time - _sdk_timestamp) < _CREDENTIALS_EXPIRY:
+        return _sdk_instance
+    
+    with _sdk_lock:
+        if _sdk_instance and (current_time - _sdk_timestamp) < _CREDENTIALS_EXPIRY:
+            return _sdk_instance
+        
+        token = retrieve_token()
+        folder_id = retrieve_folder_id()
+        
+        if not token or not folder_id:
+            if not _sdk_instance:
+                raise RuntimeError("Failed to retrieve credentials")
+            return _sdk_instance
+        
+        new_sdk = YCloudML(folder_id=folder_id, auth=token)
+        
+        _sdk_instance = new_sdk
+        _sdk_timestamp = current_time
+        return new_sdk
 
 class PromptRequest(BaseModel):
     system_prompt: str
@@ -57,10 +88,7 @@ async def proxy_yandexgpt(request: PromptRequest):
         },
     ]
 
-    sdk = YCloudML(
-        folder_id=folder_id,
-        auth=token
-    )
+    sdk = get_sdk()
 
     alternatives = (
         sdk.models.completions(ai_model_name).configure(temperature=ai_temperature).run(messages)
