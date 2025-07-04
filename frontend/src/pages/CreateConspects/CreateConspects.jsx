@@ -1,5 +1,6 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import '../../App.css';
+import { useState } from 'react';
 
 function CreateConspects() {
   const {
@@ -10,9 +11,13 @@ function CreateConspects() {
 
   const onSubmit = (data) => {};
 
+  const [level, setLevel] = useState('basic');
+
   return (
-    <div align="center">
+    <div align="center" class="first">
       <form onSubmit={handleSubmit(onSubmit)}>
+        <div class="rec1"></div>
+        <div class="rec2"></div>
         <div class="design1"></div>
         <h1 align="center" class="text">
           Создать конспект
@@ -29,11 +34,17 @@ function CreateConspects() {
             placeholder="Тема"
             style={{ fontSize: '14px' }}
           />
-          <input
-            {...register('level', { required: true })}
-            placeholder="Уровень погружения"
-            style={{ fontSize: '14px' }}
-          />
+          <h3>Уровень погружения:</h3>
+
+          <select
+            value={level}
+            onChange={(e) => setLevel(e.target.value)}
+            style={{ fontSize: '16px' }}
+          >
+            <option value="basic">Базовый</option>
+            <option value="medium">Средний</option>
+            <option value="advanced">Повышенный</option>
+          </select>
         </div>
         <button type="submit" class="b2">
           Отправить

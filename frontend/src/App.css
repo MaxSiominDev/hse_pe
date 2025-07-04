@@ -1,14 +1,35 @@
 .App {
   text-align: center;
 }
-
+.first {
+  padding-top: 100px;
+}
 body {
-  background-color: hsl(0, 0%, 100%);
+  background-color: #eeeeee;
 }
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
+/*.rec1 {
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50px;
+  height: 100%;
+  background-color: #8ca1a0;
+}
+
+.rec2 {
+  z-index: 1;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50px;
+  height: 100%;
+  background-color: #8ca1a0;
+}*/
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -23,18 +44,26 @@ body {
   height: 100px;
 } - это потом возможно будет несколько шаров, типа дизайн*/
 
-.design1 {
-  background-color: #661966;
+/*.design1 {
+  position: absolute;
+  top: 0;
+  background-color: #333333;
+  background: linear-gradient(to bottom, #2a6475, #a0aec0);
   width: 100%;
   height: 100px;
   border-radius: 10% 10% 29% 31% / 0% 0% 29% 28%;
+  z-index: 2;
 }
 .design2 {
+  position: absolute;
+  bottom: 0;
   background-color: #661966;
+  background-color: #8ca1a0;
   width: 100%;
   height: 100px;
   border-radius: 24% 25% 29% 31% / 25% 28% 0% 0%;
-}
+  z-index: 2;
+}*/
 
 /*.App-header {
   min-height: 100vh;
@@ -59,6 +88,8 @@ body {
   }
 }
 button {
+  background-color: #2a6475;
+  color: white;
   width: 100%;
   height: 50px;
   max-width: 150px;
@@ -72,7 +103,7 @@ input {
   width: 100%;
   height: 50px;
   max-width: 250px;
-  border-color: #800080;
+  border-color: #2a6475;
   border-width: 8px;
   border-style: solid;
   margin-top: 2px;
@@ -84,5 +115,6 @@ input {
   height: 100px;
   max-width: 1000px;
   margin-bottom: -20px;
-  margin-top: 100px;
+  color: #000000;
+  text-shadow: 2px 2px 4px rgba(30, 30, 32, 0.5);
 }
