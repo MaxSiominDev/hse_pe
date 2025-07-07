@@ -43,7 +43,7 @@ function EditConspects() {
     <div align="center" class="first">
       <form onSubmit={handleSubmit(onSubmit)}>
         <h1 align="center" class="text">
-          Редактор конспектов.
+          Редактор конспектов
         </h1>
         <div>
           <textarea
@@ -54,8 +54,10 @@ function EditConspects() {
             cols="100"
             style={{ fontSize: '18px' }}
             class="area"
-          >
+          > 
+          <form className='areatext'>
             Здесь будет текст из файла...
+            </form>
           </textarea>
         </div>
         <div class="buttoms">

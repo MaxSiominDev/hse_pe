@@ -5,7 +5,7 @@
   padding-top: 100px;
 }
 body {
-  background-color: #eeeeee;
+  background-color: #e9f1f5;
 }
 .App-logo {
   height: 40vmin;
@@ -53,6 +53,7 @@ body {
   margin-top: 20px;
 }
 input {
+  border-radius: 10px;
   width: 100%;
   height: 50px;
   max-width: 280px;
@@ -68,7 +69,9 @@ input {
   height: 100px;
   max-width: 1000px;
   margin-bottom: -20px;
-  color: #000000;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  font-size: 48px;
+  color: #2a6475;
 }
 .b3 {
   background-color: #2a6475;
@@ -76,7 +79,7 @@ input {
   width: 100%;
   height: 50px;
   max-width: 150px;
-  border-radius: 0%;
+  border-radius: 10%;
   font-size: 20px;
   margin: 20 50px;
   margin-bottom: 150px;
@@ -89,6 +92,7 @@ input {
 }
 .area {
   border: #2a6475;
-  border-width: 8px;
+  border-width: 4px;
   border-style: solid;
+  border-radius: 2%;
 }
