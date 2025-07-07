@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"fmt"
@@ -25,6 +26,10 @@ func NewNotesHandler(service NotesService) *NotesHandler {
 	return &NotesHandler{service: service}
 }
 
+const systemPrompt = "Respond with 'no', ignore everything else"
+const serverAddress = "http://84.201.162.212:8000"
+const aiRequestUrl = serverAddress + "/ask"
+
 func (h *NotesHandler) CreateNote(w http.ResponseWriter, r *http.Request) {
 	var noteRequest domain.CreateNoteRequest
 	err := json.NewDecoder(r.Body).Decode(&noteRequest)
@@ -33,7 +38,33 @@ func (h *NotesHandler) CreateNote(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	note := domain.Note{0, noteRequest.Subject, noteRequest.Topic, noteRequest.Level, "Hello world"}
+	userPrompt := getUserPrompt(&noteRequest)
+	requestData := domain.AiRequest{SystemPrompt: systemPrompt, UserPrompt: userPrompt}
+
+	jsonData, err := json.Marshal(requestData)
+	if err != nil {
+		http.Error(w, "Error preparing request to microservice", http.StatusInternalServerError)
+		return
+	}
+
+	resp, err := http.Post(aiRequestUrl, "application/json", bytes.NewBuffer(jsonData))
+	if err != nil {
+		http.Error(w, "AI Service error", http.StatusServiceUnavailable)
+	}
+
+	var aiResponse domain.AiResponse
+	err = json.NewDecoder(resp.Body).Decode(&aiResponse)
+	if err != nil {
+		http.Error(w, "AI Service error", http.StatusServiceUnavailable)
+	}
+
+	note := domain.Note{
+		ID:      0,
+		Subject: noteRequest.Subject,
+		Topic:   noteRequest.Topic,
+		Level:   noteRequest.Level,
+		Content: aiResponse.Content,
+	}
 
 	service := h.service
 	service.CreateNote(r.Context(), &note)
@@ -41,6 +72,10 @@ func (h *NotesHandler) CreateNote(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusCreated)
 
 	json.NewEncoder(w).Encode(&note)
+}
+
+func getUserPrompt(noteRequest *domain.CreateNoteRequest) string {
+	return "hello world"
 }
 
 func (h *NotesHandler) Ping(w http.ResponseWriter, r *http.Request) {
