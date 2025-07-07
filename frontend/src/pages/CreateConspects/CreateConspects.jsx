@@ -1,8 +1,14 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import '../../App.css';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function CreateConspects() {
+  const navigate = useNavigate();
+
+  const handleEditClick = () => {
+    navigate('/edit');
+  };
   const {
     register,
     handleSubmit,
@@ -46,7 +52,7 @@ function CreateConspects() {
             <option value="advanced">Повышенный</option>
           </select>
         </div>
-        <button type="submit" class="b2">
+        <button type="submit" class="b2" onClick={handleEditClick}>
           Отправить
         </button>
         <div class="design2"></div>

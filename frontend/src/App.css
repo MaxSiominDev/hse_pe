@@ -11,59 +11,12 @@ body {
   height: 40vmin;
   pointer-events: none;
 }
-/*.rec1 {
-  z-index: 1;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 50px;
-  height: 100%;
-  background-color: #8ca1a0;
-}
-
-.rec2 {
-  z-index: 1;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 50px;
-  height: 100%;
-  background-color: #8ca1a0;
-}*/
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
-/*.sphere {
-  border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
-  background-color: #661966;
-  width: 100px;
-  height: 100px;
-} - это потом возможно будет несколько шаров, типа дизайн*/
-
-/*.design1 {
-  position: absolute;
-  top: 0;
-  background-color: #333333;
-  background: linear-gradient(to bottom, #2a6475, #a0aec0);
-  width: 100%;
-  height: 100px;
-  border-radius: 10% 10% 29% 31% / 0% 0% 29% 28%;
-  z-index: 2;
-}
-.design2 {
-  position: absolute;
-  bottom: 0;
-  background-color: #661966;
-  background-color: #8ca1a0;
-  width: 100%;
-  height: 100px;
-  border-radius: 24% 25% 29% 31% / 25% 28% 0% 0%;
-  z-index: 2;
-}*/
 
 /*.App-header {
   min-height: 100vh;
@@ -87,7 +40,7 @@ body {
     transform: rotate(360deg);
   }
 }
-button {
+.b2 {
   background-color: #2a6475;
   color: white;
   width: 100%;
@@ -116,5 +69,26 @@ input {
   max-width: 1000px;
   margin-bottom: -20px;
   color: #000000;
-  text-shadow: 2px 2px 4px rgba(30, 30, 32, 0.5);
+}
+.b3 {
+  background-color: #2a6475;
+  color: white;
+  width: 100%;
+  height: 50px;
+  max-width: 150px;
+  border-radius: 0%;
+  font-size: 20px;
+  margin: 20 50px;
+  margin-bottom: 150px;
+  margin-top: 20px;
+}
+.buttoms {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+.area {
+  border: #2a6475;
+  border-width: 8px;
+  border-style: solid;
 }
