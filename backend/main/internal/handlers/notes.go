@@ -14,7 +14,7 @@ import (
 
 type NotesService interface {
 	GetNoteByID(ctx context.Context, id int) (*domain.Note, error)
-	CreateNote(ctx context.Context, note *domain.Note) error
+	CreateNote(ctx context.Context, note *domain.Note) (*domain.Note, error)
 }
 
 type NotesHandler struct {
@@ -33,14 +33,14 @@ func (h *NotesHandler) CreateNote(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	note := domain.Note{0, noteRequest.Subject, noteRequest.Topic, noteRequest.Level, ""}
+	note := domain.Note{0, noteRequest.Subject, noteRequest.Topic, noteRequest.Level, "Hello world"}
 
 	service := h.service
 	service.CreateNote(r.Context(), &note)
 
 	w.WriteHeader(http.StatusCreated)
 
-	json.NewEncoder(w).Encode(note)
+	json.NewEncoder(w).Encode(&note)
 }
 
 func (h *NotesHandler) Ping(w http.ResponseWriter, r *http.Request) {
