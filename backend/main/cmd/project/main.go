@@ -20,6 +20,17 @@ func main() {
 	}
 	defer db.Close()
 
+	_, err = db.Exec(`CREATE TABLE IF NOT EXISTS notes (
+		 id INTEGER PRIMARY KEY AUTOINCREMENT,
+        subject TEXT NOT NULL,
+        topic TEXT NOT NULL,
+        level INTEGER NOT NULL,
+        content TEXT NOT NULL
+	)`)
+	if err != nil {
+		log.Fatal("Failed to create table: ", err)
+	}
+
 	repo := repositories.NewNotesRepository(db)
 	service := services.NewDefaultNotesService(repo)
 	notesHandler := handlers.NewNotesHandler(service)

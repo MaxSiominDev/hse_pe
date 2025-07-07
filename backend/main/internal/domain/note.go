@@ -11,5 +11,5 @@ type Note struct {
 	Subject string `json:"subject"`
 	Topic   string `json:"topic"`
 	Level   int    `json:"level"`
-	Text    string `json:"text"`
+	Content string `json:"text"`
 }

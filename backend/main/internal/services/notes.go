@@ -8,7 +8,7 @@ import (
 
 type NotesRepository interface {
 	GetNoteByID(id int) (*domain.Note, error)
-	CreateNote(note *domain.Note) error
+	CreateNote(note *domain.Note) (*domain.Note, error)
 }
 
 // Реализация сервиса
@@ -24,6 +24,6 @@ func (s *NotesService) GetNoteByID(ctx context.Context, id int) (*domain.Note, e
 	return s.repo.GetNoteByID(id)
 }
 
-func (s *NotesService) CreateNote(ctx context.Context, note *domain.Note) error {
+func (s *NotesService) CreateNote(ctx context.Context, note *domain.Note) (*domain.Note, error) {
 	return s.repo.CreateNote(note)
 }
