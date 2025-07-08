@@ -7,7 +7,7 @@ function CreateConspects() {
   const navigate = useNavigate();
 
   const handleEditClick = () => {
-    navigate('/edit');
+    
   };
   const {
     register,
@@ -15,7 +15,10 @@ function CreateConspects() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {};
+  const onSubmit = (data) => {
+    console.log({...data, level: level}) 
+    navigate('/edit')
+  };
 
   const [level, setLevel] = useState('basic');
 
@@ -34,14 +37,14 @@ function CreateConspects() {
             {...register('conspect', { required: true })}
             placeholder="Предмет"
             style={{ fontSize: '14px' }}
+            
           />
           <input
             {...register('theme', { required: true })}
             placeholder="Тема"
             style={{ fontSize: '14px' }}
           />
-          <h3>Уровень погружения:</h3>
-
+          <h3 class="text2">Уровень погружения:</h3>
           <select
             value={level}
             onChange={(e) => setLevel(e.target.value)}
