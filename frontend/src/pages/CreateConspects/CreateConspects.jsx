@@ -1,15 +1,15 @@
-import { useForm, SubmitHandler } from 'react-hook-form';
 import '../../App.css';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 
 function CreateConspects() {
   const navigate = useNavigate();
-
   const {
     register,
     handleSubmit,
     formState: { errors },
+    watch
   } = useForm();
 
   const onSubmit = (data) => {
@@ -17,7 +17,23 @@ function CreateConspects() {
     navigate('/edit');
   };
 
+
   const [level, setLevel] = useState('basic');
+  const textareaRef = useRef(null);
+  const notesValue = watch('notes', '');
+
+  // Автоподстройка высоты
+  useEffect(() => {
+    if (textareaRef.current) {
+      // Сначала сбрасываем высоту
+      textareaRef.current.style.height = 'auto';
+      // Затем устанавливаем новую высоту (но не больше 200px)
+      textareaRef.current.style.height = `${Math.min(
+        textareaRef.current.scrollHeight,
+        200
+      )}px`;
+    }
+  }, [notesValue]);
 
   return (
     <div align="center" className="first">
@@ -42,11 +58,22 @@ function CreateConspects() {
           />
         </div>
         <div>
-          <textarea
+        <textarea
             {...register('notes', { required: true })}
-            style={{ fontSize: '18px' }}
+            ref={(e) => {
+              register('notes').ref(e);
+              textareaRef.current = e;
+            }}
+            style={{
+              fontSize: '18px',
+              minHeight: '40px',
+              resize: 'none', // Отключаем ручное изменение размера
+              overflowY: 'auto',
+              boxSizing: 'border-box'
+            }}
             className="note"
           />
+      
           <h3 className="text2">Уровень погружения:</h3>
           <select
             value={level}
