@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 function CreateConspects() {
   const navigate = useNavigate();
 
-  const handleEditClick = () => {};
   const {
     register,
     handleSubmit,
@@ -21,12 +20,12 @@ function CreateConspects() {
   const [level, setLevel] = useState('basic');
 
   return (
-    <div align="center" class="first">
+    <div align="center" className="first">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div class="rec1"></div>
-        <div class="rec2"></div>
-        <div class="design1"></div>
-        <h1 align="center" class="text">
+        <div className="rec1"></div>
+        <div className="rec2"></div>
+        <div className="design1"></div>
+        <h1 align="center" className="text">
           Создать конспект
         </h1>
 
@@ -45,16 +44,10 @@ function CreateConspects() {
         <div>
           <textarea
             {...register('notes', { required: true })}
-            id="story"
-            name="story"
-            rows="30"
-            cols="100"
             style={{ fontSize: '18px' }}
-            class="note"
-          >
-            {' '}
-          </textarea>
-          <h3 class="text2">Уровень погружения:</h3>
+            className="note"
+          />
+          <h3 className="text2">Уровень погружения:</h3>
           <select
             value={level}
             onChange={(e) => setLevel(e.target.value)}
@@ -65,10 +58,10 @@ function CreateConspects() {
             <option value="advanced">Повышенный</option>
           </select>
         </div>
-        <button type="submit" class="b2" onClick={handleEditClick}>
+        <button type="submit" className="b2">
           Отправить
         </button>
-        <div class="design2"></div>
+        <div className="design2"></div>
       </form>
     </div>
   );
