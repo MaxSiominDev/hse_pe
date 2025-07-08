@@ -6,9 +6,7 @@ import { useNavigate } from 'react-router-dom';
 function CreateConspects() {
   const navigate = useNavigate();
 
-  const handleEditClick = () => {
-    
-  };
+  const handleEditClick = () => {};
   const {
     register,
     handleSubmit,
@@ -16,8 +14,8 @@ function CreateConspects() {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log({...data, level: level}) 
-    navigate('/edit')
+    console.log({ ...data, level: level });
+    navigate('/edit');
   };
 
   const [level, setLevel] = useState('basic');
@@ -37,13 +35,25 @@ function CreateConspects() {
             {...register('conspect', { required: true })}
             placeholder="Предмет"
             style={{ fontSize: '14px' }}
-            
           />
           <input
             {...register('theme', { required: true })}
             placeholder="Тема"
             style={{ fontSize: '14px' }}
           />
+        </div>
+        <div>
+          <textarea
+            {...register('notes', { required: true })}
+            id="story"
+            name="story"
+            rows="30"
+            cols="100"
+            style={{ fontSize: '18px' }}
+            class="note"
+          >
+            {' '}
+          </textarea>
           <h3 class="text2">Уровень погружения:</h3>
           <select
             value={level}
