@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import CreateConspects from './pages/CreateConspects/CreateConspects';
 import EditConspects from './pages/CreateConspects/EditConspects';
+import StorageConspects from './pages/CreateConspects/StorageConspects';
 
 const Root = () => {
   return (
@@ -23,6 +24,7 @@ const router = createBrowserRouter(
       <Route path="create" element={<CreateConspects />} />{' '}
       {/* Явный путь /create */}
       <Route path="edit" element={<EditConspects />} /> {/* Динамический ID */}
+      <Route path="storage" element={<StorageConspects />} />{' '}
     </Route>,
   ),
 );

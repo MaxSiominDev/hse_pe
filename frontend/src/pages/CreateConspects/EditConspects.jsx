@@ -40,9 +40,9 @@ function EditConspects() {
   };
 
   return (
-    <div align="center" class="first">
+    <div align="center" className="first">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h1 align="center" class="text">
+        <h1 align="center" className="text">
           Редактор конспектов
         </h1>
         <div>
@@ -53,18 +53,16 @@ function EditConspects() {
             rows="30"
             cols="100"
             style={{ fontSize: '18px' }}
-            class="area"
-          > 
-          <form className='areatext'>
-            Здесь будет текст из файла...
-            </form>
+            className="area"
+          >
+            <form className="areatext">Здесь будет текст из файла...</form>
           </textarea>
         </div>
-        <div class="buttoms">
+        <div className="buttoms">
           <button type="submit" className="b3">
             {isCopied ? 'Текст скопирован!' : 'Сохранить'}
           </button>
-          <button onClick={handleGoBack} class="b3">
+          <button onClick={handleGoBack} className="b3">
             Вернуться на главную
           </button>
         </div>

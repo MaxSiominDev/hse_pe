@@ -9,14 +9,13 @@ function CreateConspects() {
     register,
     handleSubmit,
     formState: { errors },
-    watch
+    watch,
   } = useForm();
 
   const onSubmit = (data) => {
     console.log({ ...data, level: level });
     navigate('/edit');
   };
-
 
   const [level, setLevel] = useState('basic');
   const textareaRef = useRef(null);
@@ -30,7 +29,7 @@ function CreateConspects() {
       // Затем устанавливаем новую высоту (но не больше 200px)
       textareaRef.current.style.height = `${Math.min(
         textareaRef.current.scrollHeight,
-        200
+        200,
       )}px`;
     }
   }, [notesValue]);
@@ -58,7 +57,7 @@ function CreateConspects() {
           />
         </div>
         <div>
-        <textarea
+          <textarea
             {...register('notes', { required: true })}
             ref={(e) => {
               register('notes').ref(e);
@@ -69,11 +68,11 @@ function CreateConspects() {
               minHeight: '40px',
               resize: 'none', // Отключаем ручное изменение размера
               overflowY: 'auto',
-              boxSizing: 'border-box'
+              boxSizing: 'border-box',
             }}
             className="note"
           />
-      
+
           <h3 className="text2">Уровень погружения:</h3>
           <select
             value={level}
