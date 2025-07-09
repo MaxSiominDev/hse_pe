@@ -8,6 +8,7 @@ import {
 import CreateConspects from './pages/CreateConspects/CreateConspects';
 import EditConspects from './pages/CreateConspects/EditConspects';
 import StorageConspects from './pages/CreateConspects/StorageConspects';
+import Premium from './pages/CreateConspects/Premium';
 
 const Root = () => {
   return (
@@ -25,6 +26,7 @@ const router = createBrowserRouter(
       {/* Явный путь /create */}
       <Route path="edit" element={<EditConspects />} /> {/* Динамический ID */}
       <Route path="storage" element={<StorageConspects />} />{' '}
+      <Route path="premium" element={<Premium />} />{' '}
     </Route>,
   ),
 );
