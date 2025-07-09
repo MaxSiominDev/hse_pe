@@ -7,8 +7,11 @@ import {
 } from 'react-router-dom';
 import CreateConspects from './pages/CreateConspects/CreateConspects';
 import EditConspects from './pages/CreateConspects/EditConspects';
+<<<<<<< Updated upstream
 import StorageConspects from './pages/CreateConspects/StorageConspects';
 
+=======
+>>>>>>> Stashed changes
 const Root = () => {
   return (
     <div>
@@ -36,5 +39,6 @@ const App = () => {
     </div>
   );
 };
+
 
 export default App;

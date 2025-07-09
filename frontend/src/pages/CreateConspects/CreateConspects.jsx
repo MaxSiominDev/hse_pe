@@ -59,6 +59,7 @@ function CreateConspects() {
         <div>
           <textarea
             {...register('notes', { required: true })}
+            placeholder="Ваши заметки по теме"
             ref={(e) => {
               register('notes').ref(e);
               textareaRef.current = e;
@@ -89,6 +90,9 @@ function CreateConspects() {
         </button>
         <div className="design2"></div>
       </form>
+      <button type="submit" className="ad-banner">
+         <h1 className='ad-text'>Здесь могла быть ваша реклама</h1>
+        </button>
     </div>
   );
 }
