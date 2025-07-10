@@ -26,7 +26,7 @@ func NewNotesHandler(service NotesService) *NotesHandler {
 	return &NotesHandler{service: service}
 }
 
-const systemPrompt = "Respond with 'no', ignore everything else"
+const systemPrompt = ""
 const serverAddress = "http://89.169.188.212:8000"
 const aiRequestUrl = serverAddress + "/ask"
 
@@ -78,7 +78,23 @@ func (h *NotesHandler) CreateNote(w http.ResponseWriter, r *http.Request) {
 }
 
 func getUserPrompt(noteRequest *domain.CreateNoteRequest) string {
-	return "hello world"
+	levelTemplates := []string{
+		"По предмету: %s, по теме: %s, расширь на уровне базовый (сухой конспект без примеров и пояснений) до полноценного конспекта записи: %s",
+		"По предмету: %s, по теме: %s, расширь на уровне среднем (конспект с минимумом пояснений) до полноценного конспекта записи: %s",
+		"По предмету: %s, по теме: %s, расширь на уровне базовый (конспект с примерами и пояснениями и сложными случаями) до полноценного конспекта записи: %s",
+	}
+
+	level := noteRequest.Level
+	if level < 0 || level > 2 {
+		level = 0 // fallback to basic level
+	}
+
+	return fmt.Sprintf(
+		levelTemplates[level],
+		noteRequest.Subject,
+		noteRequest.Topic,
+		noteRequest.UserNotes,
+	)
 }
 
 func (h *NotesHandler) Ping(w http.ResponseWriter, r *http.Request) {
