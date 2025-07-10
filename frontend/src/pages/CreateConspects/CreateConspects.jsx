@@ -4,18 +4,43 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 function CreateConspects() {
+  const server_url = "http://localhost:8080"
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
+    watch
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log({ ...data, level: level });
+  const onSubmit = async (data) => {
+    const body = { ...data, level: level };
+    try {
+    const response = await fetch(server_url + '/api/new-note', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(
+        body
+      ),
+    });
+
+    if (!response.ok) {
+      throw new Error('Ошибка при создании заметки');
+    }
+
+    const data = await response.json();
     navigate('/edit');
+    return data; // Возвращает созданную заметку (Note)
+  } catch (error) {
+    console.error('Error:', error);
+    throw error;
+  }
+    
+    
   };
+
 
   const [level, setLevel] = useState('basic');
   const textareaRef = useRef(null);
@@ -29,7 +54,7 @@ function CreateConspects() {
       // Затем устанавливаем новую высоту (но не больше 200px)
       textareaRef.current.style.height = `${Math.min(
         textareaRef.current.scrollHeight,
-        200,
+        200
       )}px`;
     }
   }, [notesValue]);
@@ -57,7 +82,7 @@ function CreateConspects() {
           />
         </div>
         <div>
-          <textarea
+        <textarea
             {...register('notes', { required: true })}
             placeholder="Ваши заметки по теме"
             ref={(e) => {
@@ -69,11 +94,11 @@ function CreateConspects() {
               minHeight: '40px',
               resize: 'none', // Отключаем ручное изменение размера
               overflowY: 'auto',
-              boxSizing: 'border-box',
+              boxSizing: 'border-box'
             }}
             className="note"
           />
-
+      
           <h3 className="text2">Уровень погружения:</h3>
           <select
             value={level}
@@ -93,6 +118,11 @@ function CreateConspects() {
       <button type="submit" className="ad-banner">
          <h1 className='ad-text'>Здесь могла быть ваша реклама</h1>
         </button>
+        <div className="hat">
+      <form className="hat-title">Conspects - лучшее решение для ваших конспектов</form>
+      <div className="hat-circle"></div>
+      <button type="submit" className="hat-rectangle">Узнать больше о Premium</button>
+    </div>
     </div>
   );
 }

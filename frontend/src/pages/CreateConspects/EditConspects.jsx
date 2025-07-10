@@ -78,6 +78,14 @@ function EditConspects() {
           Узнать больше о Premium
         </button>
       </div>
+        <form className="hat-title">
+          Conspects - лучшее решение для ваших конспектов
+        </form>
+        <div className="hat-circle"></div>
+        <button type="submit" className="hat-rectangle">
+          Узнать больше о Premium
+        </button>
+      </div>
     </div>
   );
 }
