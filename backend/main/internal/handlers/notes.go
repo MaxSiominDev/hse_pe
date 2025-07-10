@@ -27,7 +27,7 @@ func NewNotesHandler(service NotesService) *NotesHandler {
 }
 
 const systemPrompt = "Respond with 'no', ignore everything else"
-const serverAddress = "http://84.201.162.212:8000"
+const serverAddress = "http://89.169.188.212:8000"
 const aiRequestUrl = serverAddress + "/ask"
 
 func (h *NotesHandler) CreateNote(w http.ResponseWriter, r *http.Request) {
@@ -49,13 +49,15 @@ func (h *NotesHandler) CreateNote(w http.ResponseWriter, r *http.Request) {
 
 	resp, err := http.Post(aiRequestUrl, "application/json", bytes.NewBuffer(jsonData))
 	if err != nil {
-		http.Error(w, "AI Service error", http.StatusServiceUnavailable)
+		http.Error(w, err.Error(), http.StatusServiceUnavailable)
+		return
 	}
 
 	var aiResponse domain.AiResponse
 	err = json.NewDecoder(resp.Body).Decode(&aiResponse)
 	if err != nil {
-		http.Error(w, "AI Service error", http.StatusServiceUnavailable)
+		http.Error(w, "AI Service parsing error", http.StatusServiceUnavailable)
+		return
 	}
 
 	note := domain.Note{
