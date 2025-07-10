@@ -46,8 +46,8 @@ function EditConspects() {
         <h1 align="center" className="text">
           Редактор конспектов
         </h1>
-        <div className="b_ad"></div>
-        <div className="b_ad2"></div>
+        <div className="b_ad">Здесь могла быть ваша реклама</div>
+        <div className="b_ad2">Здесь могла быть ваша реклама</div>
         <div>
           <textarea
             ref={textareaRef}
