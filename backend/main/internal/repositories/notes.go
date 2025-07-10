@@ -16,8 +16,8 @@ func NewNotesRepository(db *sql.DB) *NotesRepository {
 func (r *NotesRepository) GetNoteByID(id int) (*domain.Note, error) {
 
 	var note domain.Note
-	row := r.db.QueryRow("SELECT id, subject, topic, level, content FROM notes WHERE id = ?", id)
-	err := row.Scan(&note.ID, &note.Subject, &note.Topic, &note.Level, &note.Content)
+	row := r.db.QueryRow("SELECT id, subject, notes, topic, level, content FROM notes WHERE id = ?", id)
+	err := row.Scan(&note.ID, &note.Subject, &note.UserNotes, &note.Topic, &note.Level, &note.Content)
 	if err != nil {
 		return nil, err
 	}
@@ -26,11 +26,12 @@ func (r *NotesRepository) GetNoteByID(id int) (*domain.Note, error) {
 
 func (r *NotesRepository) CreateNote(note *domain.Note) (*domain.Note, error) {
 	err := r.db.QueryRow(
-		"INSERT INTO notes (subject, topic, level, content) VALUES (?, ?, ?, ?) RETURNING id",
+		"INSERT INTO notes (subject, topic, level, content, notes) VALUES (?, ?, ?, ?, ?) RETURNING id",
 		note.Subject,
 		note.Topic,
 		note.Level,
 		note.Content,
+		note.UserNotes,
 	).Scan(&note.ID)
 
 	if err != nil {

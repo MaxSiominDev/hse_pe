@@ -26,6 +26,7 @@ func main() {
         subject TEXT NOT NULL,
         topic TEXT NOT NULL,
         level INTEGER NOT NULL,
+		notes TEXT NOT NULL,
         content TEXT NOT NULL
 	)`)
 	if err != nil {
