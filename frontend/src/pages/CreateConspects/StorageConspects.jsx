@@ -31,6 +31,15 @@ function StorageConspects() {
           Вернуться на главную
         </button>
       </form>
+      <div className="hat">
+          <form className="hat-title">
+            Conspects - лучшее решение для ваших конспектов
+            <div className="hat-circle"></div>
+            <button type="submit" className="hat-rectangle">
+              Узнать больше о Premium
+            </button>
+          </form>
+        </div>
     </div>
   );
 }

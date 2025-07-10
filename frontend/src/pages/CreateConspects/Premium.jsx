@@ -32,11 +32,23 @@ function Premium() {
           <h1>Индивидуальная подписка</h1>
           <h3>100Р</h3>
         </button>
-
+        <div align="center">
+          <form>
         <button onClick={handleGoBack} className="but1">
           Вернуться на главную
         </button>
+        </form>
+        </div>
       </form>
+      <div className="hat">
+          <form className="hat-title">
+            Conspects - лучшее решение для ваших конспектов
+            <div className="hat-circle"></div>
+            <button type="submit" className="hat-rectangle">
+              Узнать больше о Premium
+            </button>
+          </form>
+        </div>
     </div>
   );
 }

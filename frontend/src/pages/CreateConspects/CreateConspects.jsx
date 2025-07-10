@@ -16,7 +16,7 @@ function CreateConspects() {
   const onSubmit = async (data) => {
     const body = { ...data, level: level };
     try {
-    const response = await fetch(server_url + '/api/new-note', {
+    const response = await fetch(server_url + '/api/new-note/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -119,10 +119,14 @@ function CreateConspects() {
          <h1 className='ad-text'>Здесь могла быть ваша реклама</h1>
         </button>
         <div className="hat">
-      <form className="hat-title">Conspects - лучшее решение для ваших конспектов</form>
-      <div className="hat-circle"></div>
-      <button type="submit" className="hat-rectangle">Узнать больше о Premium</button>
-    </div>
+          <form className="hat-title">
+            Conspects - лучшее решение для ваших конспектов
+            <div className="hat-circle"></div>
+            <button type="submit" className="hat-rectangle">
+              Узнать больше о Premium
+            </button>
+          </form>
+        </div>
     </div>
   );
 }
