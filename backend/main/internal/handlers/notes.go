@@ -59,11 +59,12 @@ func (h *NotesHandler) CreateNote(w http.ResponseWriter, r *http.Request) {
 	}
 
 	note := domain.Note{
-		ID:      0,
-		Subject: noteRequest.Subject,
-		Topic:   noteRequest.Topic,
-		Level:   noteRequest.Level,
-		Content: aiResponse.Content,
+		ID:        0,
+		Subject:   noteRequest.Subject,
+		Topic:     noteRequest.Topic,
+		Level:     noteRequest.Level,
+		Content:   aiResponse.Content,
+		UserNotes: noteRequest.UserNotes,
 	}
 
 	service := h.service
