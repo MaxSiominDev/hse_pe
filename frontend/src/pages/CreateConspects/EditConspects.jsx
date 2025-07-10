@@ -40,6 +40,7 @@ function EditConspects() {
   };
 
   return (
+    <div>
     <div align="center" className="first">
       <form onSubmit={handleSubmit(onSubmit)}>
         <h1 align="center" className="text">

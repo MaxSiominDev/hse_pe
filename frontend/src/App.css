@@ -49,44 +49,6 @@ body {
 .b_ad2:hover {
   scale: 1.1;
 }
-.b_ad {
-  background-color: #2a6475;
-  color: white;
-  width: 100%;
-  height: 500px;
-  max-width: 100px;
-  border-radius: 0%;
-  font-size: 20px;
-  margin: 20 50px;
-  margin-bottom: 150px;
-  margin-top: 50px;
-  margin-left: 20px;
-  transition: all 0.3s;
-  position: absolute;
-  left: 0;
-}
-.b_ad:hover {
-  scale: 1.1;
-}
-.b_ad2 {
-  background-color: #2a6475;
-  color: white;
-  width: 100%;
-  height: 500px;
-  max-width: 100px;
-  border-radius: 0%;
-  font-size: 20px;
-  margin: 20 50px;
-  margin-bottom: 150px;
-  margin-top: 50px;
-  margin-right: 20px;
-  transition: all 0.3s;
-  position: absolute;
-  right: 0;
-}
-.b_ad2:hover {
-  scale: 1.1;
-}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -101,8 +63,6 @@ body {
   width: 100%;
   height: 100px;
   margin-top: 10px;
-  min-height: 50px; /* Минимальная начальная высота */
-  max-height: 400px; /* Максимальная высота */
   min-height: 50px; /* Минимальная начальная высота */
   max-height: 400px; /* Максимальная высота */
   transition: height 0.2s ease-out; /* Плавность анимации роста */
@@ -211,7 +171,6 @@ select {
 }
 .ad-banner {
   width: 1000px;
-  background-color: #2196f3; /* Красный цвет */
   background-color: #2196f3; /* Красный цвет */
   color: white;
   padding: 40px 20px;
