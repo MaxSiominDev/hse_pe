@@ -243,7 +243,8 @@ select {
 /* Текст по центру (гибкий) */
 .hat-title {
   position: absolute;
-  left: 50%;
+  top: 5%;
+  left: 40%;
   transform: translateX(-50%);
   font-size: 36px;
   font-family: 'Segoe UI', Tahoma, sans-serif;
@@ -254,9 +255,6 @@ select {
 
 /* Левый прямоугольник */
 .hat-rectangle {
-  position: absolute;
-  top: 14px; /* Отступ сверху */
-  left: 20px; /* Отступ слева */
   width: 300px;
   height: 30px;
   background: white;
@@ -265,25 +263,24 @@ select {
   justify-content: center;
   color: black;
   font-weight: bold;
-  z-index: 1001;
-  margin-left: 1370px;
+  position: absolute;
+  top: 30%;
+  left: 100%;
+  margin-left: 20px;
   border-radius: 25px;
-  transition: all 0.3s; /* Выше шапки */
-  border-radius: 25px;
-  transition: all 0.3s; /* Выше шапки */
+  transition: all 0.3s;
 }
 .hat-rectangle:hover {
   scale: 1.1;
-  scale: 1.1;
 }
 
-/* Круг справа */
+/* 
 .hat-circle {
-  position: relative; /* Для точного позиционирования */
-  right: 20px; /* Отступ справа */
+  position: relative; 
+  right: 20px; 
   width: 50px;
   height: 50px;
   background: #ff0000;
   border-radius: 50%;
   margin-left: 1650px;
-}
+}*/
