@@ -26,7 +26,7 @@ func NewNotesHandler(service NotesService) *NotesHandler {
 	return &NotesHandler{service: service}
 }
 
-const systemPrompt = ""
+const systemPrompt = "."
 const serverAddress = "http://89.169.188.212:8000"
 const aiRequestUrl = serverAddress + "/ask"
 
