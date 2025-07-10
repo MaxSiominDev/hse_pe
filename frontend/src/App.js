@@ -7,8 +7,6 @@ import {
 } from 'react-router-dom';
 import CreateConspects from './pages/CreateConspects/CreateConspects';
 import EditConspects from './pages/CreateConspects/EditConspects';
-import StorageConspects from './pages/CreateConspects/StorageConspects';
-import Premium from './pages/CreateConspects/Premium';
 
 const Root = () => {
   return (
@@ -17,7 +15,6 @@ const Root = () => {
     </div>
   );
 };
-
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root />}>
@@ -25,12 +22,10 @@ const router = createBrowserRouter(
       <Route path="create" element={<CreateConspects />} />{' '}
       {/* Явный путь /create */}
       <Route path="edit" element={<EditConspects />} /> {/* Динамический ID */}
-      <Route path="storage" element={<StorageConspects />} />{' '}
-      <Route path="premium" element={<Premium />} />{' '}
+
     </Route>,
   ),
 );
-
 const App = () => {
   return (
     <div>
@@ -38,5 +33,5 @@ const App = () => {
     </div>
   );
 };
-
+//fixed bugs
 export default App;
