@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"github.com/go-chi/chi"
+	"github.com/go-chi/cors"
 	_ "github.com/mattn/go-sqlite3"
 
 	"hse_school/internal/handlers"
@@ -36,6 +37,15 @@ func main() {
 	notesHandler := handlers.NewNotesHandler(service)
 
 	r := chi.NewRouter()
+
+	r.Use(cors.Handler(cors.Options{
+		AllowedOrigins:   []string{"*"}, // Allow all origins
+		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowedHeaders:   []string{"Content-Type", "Authorization"},
+		AllowCredentials: false,
+		MaxAge:           300, // Cache preflight requests for 5 minutes
+	}))
+
 	r.Post("/api/new-note", notesHandler.CreateNote)
 	r.Get("/api/notes/{id}", notesHandler.GetNoteByID)
 	r.Get("/ping", notesHandler.Ping)

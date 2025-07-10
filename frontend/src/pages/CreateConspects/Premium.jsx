@@ -22,7 +22,7 @@ function Premium() {
 
   return (
     <div align="center">
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form>
         <button className="Basic">
           <h1>Индивидуальная подписка для студентов и школьников</h1>
           <h3>50Р</h3>
@@ -34,6 +34,13 @@ function Premium() {
         </button>
         <div align="center">
           <form>
+
+        <button className="Teachers">
+          <h1>Индивидуальная подписка для учителей</h1>
+          <h3>80Р</h3>
+        </button>
+      </form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <button onClick={handleGoBack} className="but1">
           Вернуться на главную
         </button>
