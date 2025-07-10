@@ -27,7 +27,7 @@ func NewNotesHandler(service NotesService) *NotesHandler {
 }
 
 const systemPrompt = "."
-const serverAddress = "http://89.169.188.212:8000"
+const serverAddress = "http://89.169.191.34:8000"
 const aiRequestUrl = serverAddress + "/ask"
 
 func (h *NotesHandler) CreateNote(w http.ResponseWriter, r *http.Request) {
