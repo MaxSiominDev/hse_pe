@@ -15,17 +15,18 @@ const Root = () => {
     </div>
   );
 };
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root />}>
-      <Route index element={<CreateConspects />} /> {/* Главная страница */}
-      <Route path="create" element={<CreateConspects />} />{' '}
-      {/* Явный путь /create */}
-      <Route path="edit" element={<EditConspects />} /> {/* Динамический ID */}
-
-    </Route>,
+      <Route index element={<CreateConspects />} />
+      <Route path="create" element={<CreateConspects />} />
+      {/* Добавляем динамический параметр :id */}
+      <Route path="edit/:id" element={<EditConspects />} />
+    </Route>
   ),
 );
+
 const App = () => {
   return (
     <div>
@@ -33,6 +34,5 @@ const App = () => {
     </div>
   );
 };
-//fixed bugs
-//bugs fixed  
+
 export default App;

@@ -40,13 +40,14 @@ function EditConspects() {
   };
 
   return (
+    <div>
     <div align="center" className="first">
       <form onSubmit={handleSubmit(onSubmit)}>
         <h1 align="center" className="text">
           Редактор конспектов
         </h1>
-        <div className="b_ad">Здесь могла быть ваша реклама</div>
-        <div className="b_ad2">Здесь могла быть ваша реклама</div>
+        <div className="b_ad"></div>
+        <div className="b_ad2"></div>
         <div>
           <textarea
             ref={textareaRef}
@@ -70,6 +71,14 @@ function EditConspects() {
         </div>
       </form>
       <div className="hat">
+        <form className="hat-title">
+          Conspects - лучшее решение для ваших конспектов
+        </form>
+        <div className="hat-circle"></div>
+        <button type="submit" className="hat-rectangle">
+          Узнать больше о Premium
+        </button>
+      </div>
         <form className="hat-title">
           Conspects - лучшее решение для ваших конспектов
         </form>
