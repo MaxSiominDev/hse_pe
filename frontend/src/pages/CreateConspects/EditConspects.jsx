@@ -41,43 +41,44 @@ function EditConspects() {
 
   return (
     <div>
-    <div align="center" className="first">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <h1 align="center" className="text">
-          Редактор конспектов
-        </h1>
-        <div className="b_ad">Здесь могла быть ваша реклама</div>
-        <div className="b_ad2">Здесь могла быть ваша реклама</div>
-        <div>
-          <textarea
-            ref={textareaRef}
-            id="story"
-            name="story"
-            rows="30"
-            cols="100"
-            style={{ fontSize: '18px' }}
-            className="area"
-          >
-            <form className="areatext">Здесь будет текст из файла...</form>
-          </textarea>
-        </div>
-        <div className="buttoms">
-          <button type="submit" className="b3">
-            {isCopied ? 'Текст скопирован!' : 'Сохранить'}
-          </button>
-          <button onClick={handleGoBack} className="b3">
-            Вернуться на главную
-          </button>
-        </div>
-      </form>
-      <div className="hat">
-        <form className="hat-title">
-          Conspects - лучшее решение для ваших конспектов
-          <div className="hat-circle"></div>
-          <button type="submit" className="hat-rectangle">
-            Узнать больше о Premium
-          </button>
+      <div align="center" className="first">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <h1 align="center" className="text">
+            Редактор конспектов
+          </h1>
+          <div className="b_ad">Здесь могла быть ваша реклама</div>
+          <div className="b_ad2">Здесь могла быть ваша реклама</div>
+          <div>
+            <textarea
+              ref={textareaRef}
+              id="story"
+              name="story"
+              rows="30"
+              cols="100"
+              style={{ fontSize: '18px' }}
+              className="area"
+            >
+              <form className="areatext">Здесь будет текст из файла...</form>
+            </textarea>
+          </div>
+          <div className="buttoms">
+            <button type="submit" className="b3">
+              {isCopied ? 'Текст скопирован!' : 'Сохранить'}
+            </button>
+            <button onClick={handleGoBack} className="b3">
+              Вернуться на главную
+            </button>
+          </div>
         </form>
+        <div className="hat">
+          <form className="hat-title">
+            Conspects - лучшее решение для ваших конспектов
+            <div className="hat-circle"></div>
+            <button type="submit" className="hat-rectangle">
+              Узнать больше о Premium
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
