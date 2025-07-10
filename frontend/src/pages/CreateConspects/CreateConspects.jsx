@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 function CreateConspects() {
-  const server_url = "http://localhost:8080"
+  const server_url = "http://89.169.183.150:8080"
   const navigate = useNavigate();
   const {
     register,
@@ -14,9 +14,13 @@ function CreateConspects() {
   } = useForm();
 
   const onSubmit = async (data) => {
-    const body = { ...data, level: level };
+    const body = {
+      "subject": data.conspect,
+      "topic": data.theme,
+      "level": +data.level
+    };
     try {
-    const response = await fetch(server_url + '/api/new-note/', {
+    const response = await fetch(server_url + '/api/new-note', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -31,7 +35,7 @@ function CreateConspects() {
     }
 
     const data = await response.json();
-    navigate('/edit');
+    navigate(`/edit/${data.id}`);
     return data; // Возвращает созданную заметку (Note)
   } catch (error) {
     console.error('Error:', error);
@@ -100,14 +104,14 @@ function CreateConspects() {
           />
       
           <h3 className="text2">Уровень погружения:</h3>
-          <select
+        <select {...register('level', { required: true })}
             value={level}
             onChange={(e) => setLevel(e.target.value)}
             style={{ fontSize: '16px' }}
           >
-            <option value="basic">Базовый</option>
-            <option value="medium">Средний</option>
-            <option value="advanced">Повышенный</option>
+            <option value="0">Базовый</option>
+            <option value="1">Средний</option>
+            <option value="2">Повышенный</option>
           </select>
         </div>
         <button type="submit" className="b2">

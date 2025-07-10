@@ -1,12 +1,18 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import '../../App.css';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {useParams} from 'react-router-dom'
 
-function EditConspects() {
+const server_url = "http://89.169.183.150:8080"
+
+  function EditConspects() {
   const navigate = useNavigate();
   const textareaRef = useRef(null);
   const [isCopied, setIsCopied] = useState(false);
+  const [responseData, setResponseData] = useState(null);
+  const { id } = useParams();
+
 
   const handleGoBack = () => {
     navigate('/');
@@ -16,9 +22,35 @@ function EditConspects() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+      } = useForm();
 
-  const onSubmit = (data) => {
+  useEffect(() => {
+
+    const fetchData = async () => {
+      try {
+       const response = await fetch(server_url + `/api/notes/${id}`);
+
+      if (!response.ok) {
+        if (response.status === 404) {
+          throw new Error('Заметка не найдена');
+        }
+        throw new Error('Ошибка при получении заметки');
+      }
+
+      const data = await response.json();
+      setResponseData(data);
+    } catch (error) {
+      console.error('Error:', error);
+      throw error;
+    }
+    }
+
+    fetchData()
+    
+  }, [])
+
+  const onSubmit = async (data) => {
+    
     if (textareaRef.current) {
       const textToCopy = textareaRef.current.value;
 
@@ -39,6 +71,8 @@ function EditConspects() {
     }
   };
 
+  if (!responseData) return <p>Loading</p>
+
   return (
     <div>
       <div align="center" className="first">
@@ -57,8 +91,8 @@ function EditConspects() {
               cols="100"
               style={{ fontSize: '18px' }}
               className="area"
+              defaultValue={responseData.text}
             >
-              <form className="areatext">Здесь будет текст из файла...</form>
             </textarea>
           </div>
           <div className="buttoms">
