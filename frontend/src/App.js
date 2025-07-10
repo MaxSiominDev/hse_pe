@@ -34,4 +34,5 @@ const App = () => {
   );
 };
 //fixed bugs
+//bugs fixed  
 export default App;
