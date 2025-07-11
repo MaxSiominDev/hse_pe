@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 function CreateConspects() {
-  const server_url = "http://89.169.183.150:8080"
+  const server_url = "http://89.169.191.1:8080"
+  const Stas_url = "https://strevesuksess.github.io/Portfolio/"
   const navigate = useNavigate();
   const {
     register,
@@ -12,6 +13,9 @@ function CreateConspects() {
     formState: { errors },
     watch
   } = useForm();
+  const Stas_ad = () => {
+    navigate(Stas_url);
+  };
 
   const onSubmit = async (data) => {
     const body = {
@@ -119,8 +123,8 @@ function CreateConspects() {
         </button>
         <div className="design2"></div>
       </form>
-      <button type="submit" className="ad-banner">
-         <h1 className='ad-text'>Здесь могла быть ваша реклама</h1>
+      <button onClick={() => window.open("https://strevesuksess.github.io/Portfolio/", "_blank")} className="ad-banner">
+         <h1 className='ad-text'>Best frontend dev ever</h1>
         </button>
         <div className="hat">
           <form className="hat-title">
